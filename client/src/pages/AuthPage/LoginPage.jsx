@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../utils/Axios';
 
 import './AuthPage.scss';
 
@@ -19,7 +19,7 @@ const LoginPage = () => {
   // Send Data to Backend
   const registerHandler = async () => {
     try {
-      await axios.post('/api/auth/register', {...form}, {
+      await axios.post('/auth/register', {...form}, {
         headers: {
           'Content-Type': 'application/json'
         }
