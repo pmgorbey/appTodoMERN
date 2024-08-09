@@ -67,6 +67,7 @@ const LoginPage = () => {
                           <div className="row">
                             <button
                               className='wawes-effect wawes-light btn blue'
+                              onClick={registerHandler}
                             >
                               Sign In
                             </button>

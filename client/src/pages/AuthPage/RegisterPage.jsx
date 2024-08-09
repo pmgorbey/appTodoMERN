@@ -26,7 +26,6 @@ const RegisterPage = () => {
         }
       })
       .then(response => console.log(response));
-      console.log(form);
     } catch(err) {
       console.log(err);
     }
