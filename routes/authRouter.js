@@ -2,9 +2,10 @@ const { Router } = require('express');
 const User = require('../models/User');
 const router = Router();
 
-router.post('/registration', async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(email, password);
 
         const isUsed = await User.findOne({email});
         if (isUsed) {
