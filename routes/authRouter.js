@@ -3,6 +3,8 @@ const User = require('../models/User');
 const router = Router();
 // Express-Validator
 const {check, validationResult} = require('express-validator');
+// Hashing password
+const bcrypt = require('bcryptjs');
 
 router.post('/register', 
     // Express-Validator
@@ -29,9 +31,12 @@ router.post('/register',
                 return res.status(300).json({message: 'This Email already exist ...'});
             }
 
+            // Hashing password
+            const hashedPassword = await bcrypt.hash(password, 7);
+
             const user = new User({
                 email,
-                password
+                password: hashedPassword
             });
 
             await user.save();
