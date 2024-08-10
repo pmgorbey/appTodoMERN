@@ -5,6 +5,8 @@ const router = Router();
 const {check, validationResult} = require('express-validator');
 // Hashing password
 const bcrypt = require('bcryptjs');
+// Create Token
+const jwt = require('jsonwebtoken');
 
 router.post('/register', 
     // Express-Validator
@@ -47,6 +49,51 @@ router.post('/register',
         }
     }
 ); 
+
+router.post('/login', 
+    // Express-Validator
+    [
+        check('email', 'Incorrect email ...').isEmail(),
+        check('password', 'Incorrect password').exists()
+    ],
+    async (req, res) => {
+        try {
+            // Express-Validator
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                    message: 'Incorrect data during register ... '
+                });
+            }
+      
+            const { email, password } = req.body;
+            
+            const user = await User.findOne({email});
+            // Check Email
+            if (!user) {
+                return res.status(400).json({message: 'This Email not found ...'});
+            }
+            // Check Password
+            const isMatch = bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(400).json({message: 'Password is incorrect ...'});
+            }
+            // Create Token
+            const jwtSecret = 'Jkljkljkljkl';
+            const token = jwt.sign(
+                {userId: user.id},
+                jwtSecret,
+                {expiresIn: '1h'}
+            );
+
+            res.json({token, iserId: user.id});
+
+        } catch(err) {
+            console.log(err);
+        }
+    }
+);
 
 
 module.exports = router;
