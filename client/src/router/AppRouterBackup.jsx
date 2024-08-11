@@ -10,14 +10,14 @@ import AboutPage from '../pages/AboutPage/AboutPage';
 const AppRouter = () => {
   return (
     <div>
-      <Routes>
-          <Route path='/' element={<Layout />}>
-              <Route index element={<HomePage />} />
-              <Route path='login' element={<LoginPage />} />
-              <Route path='register' element={<RegisterPage />} />
-              <Route path='about' element={<AboutPage />} />
-          </Route>
-      </Routes>
+        <Routes>
+            <Route path='/' element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path='login' element={<LoginPage />} />
+                <Route path='register' element={<RegisterPage />} />
+                <Route path='about' element={<AboutPage />} />
+            </Route>
+        </Routes>
     </div>
   )
 }

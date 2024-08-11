@@ -11,12 +11,12 @@ const Navbar = () => {
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><NavLink to="/">Main</NavLink></li>
             <li><NavLink to="/login">Sign In</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>            
+            <li><NavLink to="/about">About</NavLink></li>
+            
           </ul>
         </div>
     </nav>
   )
 }
-
 
 export default Navbar;

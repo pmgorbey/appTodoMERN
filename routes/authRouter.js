@@ -79,15 +79,16 @@ router.post('/login',
             if (!isMatch) {
                 return res.status(400).json({message: 'Password is incorrect ...'});
             }
-            // Create Token
+            // Secret Key
             const jwtSecret = 'Jkljkljkljkl';
+            // Create Token
             const token = jwt.sign(
                 {userId: user.id},
                 jwtSecret,
                 {expiresIn: '1h'}
             );
 
-            res.json({token, iserId: user.id});
+            res.json({token, userId: user.id});
 
         } catch(err) {
             console.log(err);
