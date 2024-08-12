@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import axios from '../../utils/Axios';
 
 import './AuthPage.scss';
@@ -10,22 +11,31 @@ const LoginPage = () => {
     password: ''
   });
 
+  const navigate = useNavigate();
+
+  // Context
+  const { login } = useContext(AuthContext);
+
   // Change Data
   const changeHandler = (event) => {
     setForm({...form, [event.target.name]: event.target.value});
-    console.log({...form});
+    // console.log({...form});
   }
 
   // Send Data to Backend
-  const registerHandler = async () => {
+  const loginHandler = async () => {
+    
+
     try {
-      await axios.post('/auth/register', {...form}, {
+      await axios.post('/auth/login', {...form}, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => console.log(response));
-      console.log(form);
+      .then(response => {
+        login(response.data.token, response.data.userId)
+        navigate('/');
+      });
     } catch(err) {
       console.log(err);
     }
@@ -67,7 +77,7 @@ const LoginPage = () => {
                           <div className="row">
                             <button
                               className='wawes-effect wawes-light btn blue'
-                              onClick={registerHandler}
+                              onClick={loginHandler}
                             >
                               Sign In
                             </button>
