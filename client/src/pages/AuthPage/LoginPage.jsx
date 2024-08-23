@@ -24,8 +24,6 @@ const LoginPage = () => {
 
   // Send Data to Backend
   const loginHandler = async () => {
-    
-
     try {
       await axios.post('/auth/login', {...form}, {
         headers: {

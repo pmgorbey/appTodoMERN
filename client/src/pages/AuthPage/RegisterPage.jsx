@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../utils/Axios';
 
 import './AuthPage.scss';
@@ -9,6 +9,8 @@ const RegisterPage = () => {
     email: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   // Change Data
   const changeHandler = (event) => {
@@ -25,6 +27,7 @@ const RegisterPage = () => {
         }
       })
       .then(response => console.log(response));
+      navigate('/login');
     } catch(err) {
       console.log(err);
     }

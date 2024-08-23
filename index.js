@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const AuthRouter = require('./routes/authRouter');
+const TodoRouter = require('./routes/todoRouter');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json({extended: true}));
 
 app.use('/api/auth', AuthRouter);
+app.use('/api/todo', TodoRouter);
 
 const start = async () => {
     try {

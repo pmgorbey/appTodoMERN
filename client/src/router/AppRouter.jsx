@@ -9,7 +9,7 @@ import AboutPage from '../pages/AboutPage/AboutPage';
 
 const AppRouter = (isLogin) => {
   
-  console.log(isLogin);
+  // console.log(isLogin);
     return (
       isLogin
       ?
@@ -27,7 +27,6 @@ const AppRouter = (isLogin) => {
                 <Route index element={<Navigate to='/login' />} />
                 <Route path='login' element={<LoginPage />} />
                 <Route path='register' element={<RegisterPage />} />
-                {/* <Route path='about' element={<Navigate to='/login' />} /> */}
                 <Route path='*' element={<Navigate to='/login' />} />
             </Route>
         </Routes>
